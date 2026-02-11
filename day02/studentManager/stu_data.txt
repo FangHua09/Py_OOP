@@ -1,0 +1,1 @@
+[{'name': '子涵', 'gender': '男', 'age': 89, 'phone': '789', 'desc': '干饭不积极，思想有问题'}, {'name': '诗琪', 'gender': '女', 'age': 76, 'phone': '456', 'desc': '摸鱼使我快乐'}, {'name': '1', 'gender': '1', 'age': '1', 'phone': '1', 'desc': '1'}, {'name': '6', 'gender': '6', 'age': 6, 'phone': '6', 'desc': '6'}]
