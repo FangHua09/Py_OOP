@@ -1,5 +1,5 @@
 r"""
-案例: 演示正则表达式之 校验单个字符.
+案例: 演示正则表达式之 校验分组.
 
 正则表达式介绍:
     概述:
@@ -41,41 +41,22 @@ r"""
         {n,m}   代表前边的内容 至少出现n次, 至多出现m次, 包左包右.
 
         |           代表 或者的意思
-        ()
-        \num
+        ()          代表 分组, 从左往右数, 第几个左小括号(, 就表示第几组
+        \num        代表 引用第几组的内容.
 
         扩展:
-            (?P<分组名>)
-            (?P=分组名)
+            (?P<分组名>)   设置分组
+            (?P=分组名)    使用分组
 """
-
-
-
-# 导包
 import re
+# 需求: 在列表 fruits = ['apple', 'banana', 'orange', 'pear'], 匹配 apple, pear
+# 1.定义水果列表
+fruits = ['apple', 'banana', 'orange', 'pear']
 
-
-# 正则匹配
-# 需求1: 校验字符串必须以数字开头, 无论match(), 还是search()均是.  后边是啥无所谓.
-# result = re.match(r'\d+.*', 'abc123xyz')        # 失败
-# result = re.search(r'\d+.*', 'abc123xyz')       # 匹配成功
-#
-# result = re.match(r'^\d+.*', 'abc123xyz')        # 失败
-# result = re.search(r'^\d+.*', 'abc123xyz')       # 失败
-
-
-# 需求2: 校验字符串必须以数字开头, 以任意的3个字母结尾.
-# result = re.search(r'^\d+.*[a-zA-Z]{3}', 'abc123xyz12')       # 失败
-# result = re.search(r'^\d+.*[a-zA-Z]{3}', '123你好xyz12')       # 匹配成功
-# result = re.search(r'^\d+.*[a-zA-Z]{3}$', '123你好abc12')      # 失败
-# result = re.search(r'^\d+.*[a-zA-Z]{3}$', '123你好abc')        # 匹配成功
-
-
-# 需求3: 校验手机号.  规则: 1.长度必须是11位   2.必须是纯数字.  3.第1位数字必须是1.   4.第2位数字可以是 3-9
-result = re.match(r'^1[3-9]\d{9}$', '13112345678a')
-result = re.match(r'^1[3-9]\d{9}$', '12112345678')
-
-result = re.match(r'^1[3-9]\d{9}$', '13112345678')
-
-# 打印匹配结果.
-print(result.group() if result else '未匹配!')
+# 2. 遍历, 获取到每种水果.
+for fruit in fruits:
+    # 3. 正则匹配
+    result = re.match('apple|pear', fruit)
+    # 4. 获取匹配结果.
+    if result:
+        print(result.group())
